@@ -19,7 +19,7 @@
             <button> Submit <button/>
         </form>
         <script >
-            function saveToLocalStorage(e){
+            /*function saveToLocalStorage(e){
                 e.preventDefault();
                 const name = e.target.username.value;
                 const email = e.target.emailId.value;
@@ -27,7 +27,25 @@
                 localStorage.setItem('name', name);
                 localStorage.setItem('email', email);
                 localStorage.setItem('phonenumber',phonenumber);                
+            } */
+            function saveToLocalStorage(e){
+                e.preventDefault();
+                const name = e.target.username.value;
+                const email = e.target.emailId.value;
+                const phonenumber = e.target.phonenumber.value;
+                
+                const userDetails = {
+                    name,
+                    email,
+                    phonenumber
+                }
+                let userDetailsString = JSON.stringify(userDetails);
+                localStorage.setItem('userDetails', userDetailsString);
+                let userDetailsObj = JSON.parse(localStorage.getItem('userDetials'));
+                console.log(userDetailsObj);
+                
             }
+            
         </script>
     </body>
 </html>
