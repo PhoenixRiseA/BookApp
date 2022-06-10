@@ -1,67 +1,26 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
+<html lang = "en">
+
     <body>
-        <form onsubmit="saveToLocalStorage(event)">
-            <label>Name:</label>
-            <input type="text" name="username" required/>
-            <label>Email:</label>
-            <input type="email" name = "emailId" required />
-            <label>Phone no:</label>
-            <input type="tel" name="phonenumber" />
-            <button> Submit <button/>
-        </form>
-        <ul id='listOfUsers'></ul>
-        <script >
-            /*function saveToLocalStorage(e){
-                e.preventDefault();
-                const name = e.target.username.value;
-                const email = e.target.emailId.value;
-                const phonenumber = e.target.phonenumber.value;
-                localStorage.setItem('name', name);
-                localStorage.setItem('email', email);
-                localStorage.setItem('phonenumber',phonenumber);                
-            } */
-            /*document.addEventListener('DOMContentLoaded',init);
-            function init(){
-                Object.keys(localStorage).forEach((key) => {
-                stringifiedDetailsOfPeople = localStorage.getItem(key);
-                detailsOfPeople = JSON.parse(stringifiedDetailsOfPeople);
-                addNewLineElement(detailsOfPeople);
+        <div class ="container my-3">
+            <h1>Book a call</h1>    
+            <div>
+                <form onsubmit="saveToLocalStorage(event)">
+                    <label>Name:</label>
+                    <input id = "username"type="text" name="username" required/>
+                    <label>Email:</label>
+                    <input id="email" type="email" name = "email" required />
+                    <label>Phone no:</label>
+                    <input id = "phonenumber"type="tel" name="phonenumber" />
+                    <button class= "btn btn-primary" id = "addBtn"> Get a call <button/>
+                </form>
+            </div>
+            <ul id='listOfUsers'>
 
-                });
-            }*/
-            function saveToLocalStorage(e){
-                e.preventDefault();
-                const name = e.target.username.value;
-                const email = e.target.emailId.value;
-                const phonenumber = e.target.phonenumber.value;
-                
-                const userDetails = {
-                    name,
-                    email,
-                    phonenumber
-                }
-                let userDetailsString = JSON.stringify(userDetails);
-                localStorage.setItem(userDetails, userDetailsString);
-
-                showNewUserOnScreen(userDetails);
+            </ul>
             
-                function showNewUserOnScreen(user){
-                    const parentNode = document.getElementById('listOfUsers');
-                    const childHTML =`<li>${user.name} - ${user.email} </li>`
-                    parentNode.innerHTML = parentNode.innerHTML + childHTML;
-                    
-                }
-            } 
-            
-        </script>
+        </div>        
+                   
+        <script src = "9_Dom.js"> </script>
     </body>
 </html>
