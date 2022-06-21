@@ -59,30 +59,41 @@
         
 
         var parentNode = document.getElementById("listOfUsers");
-        var childHTML = `<li id = ${user.email}>${user.name} - ${user.email}<button onclick=deleteUser('${user.email}')>X</button><button onclick=editUser('${user.email}','${user.name}','${user.phonenumber}')>edit</button></li>`;
+        // var childHTML = `<li id = ${user.email}>${user.name} - ${user.email}<button onclick=deleteUser('${user.email}')>X</button><button onclick=editUser('${user.email}','${user.name}','${user.phonenumber}')>edit</button></li>`;
+        var childHTML = `<li id = ${user._id}>${user.name} - ${user.email}<button onclick=deleteUser('${user._id}')>X</button><button onclick=editUser('${user._id}','${user.email}','${user.name}','${user.phonenumber}')>edit</button></li>`;
         parentNode.innerHTML = childHTML + parentNode.innerHTML;
     }
 
     // deleteUser
-    function deleteUser(email){
-        console.log(email);
-        localStorage.removeItem(email);
-        removeUserFromScreen(email);
+    function deleteUser(_id){
+        //console.log(email);
+        // localStorage.removeItem(email);
+        
+        axios.delete(`https://crudcrud.com/api/c0a07cd3c3924f94a79539a8212aa5ae/appointmentData/${_id}`)
+        .then(() => {
+            removeUserFromScreen(_id);
+            //console.log(response);
+        })
+        .catch((err) => {
+            document.body.innerHTML = document.body.innerHTML + "<h4>Something went wrong</h4>"
+            console.log(err)
+        })
+        //removeUserFromScreen(email);
     }
 
-    function removeUserFromScreen(email){
+    function removeUserFromScreen(_id){
         var parentNode = document.getElementById('listOfUsers');
-        var childNodeToBeDeleted = document.getElementById(email);
+        var childNodeToBeDeleted = document.getElementById(_id);
 
         parentNode.removeChild(childNodeToBeDeleted)
     }
 
-    function editUser(email, name, phonenumber){
+    function editUser(_id,email, name, phonenumber){
         document.getElementById('email').value = email;
         document.getElementById('username').value = name;
         document.getElementById('phonenumber').value = phonenumber;
         
-        deleteUser(email);
+        deleteUser(_id);
         
         
     }
