@@ -9,9 +9,19 @@
             email,
             phonenumber
         }
-        localStorage.setItem(obj.email,JSON.stringify(obj));
+        
+        axios.post("https://crudcrud.com/api/c0a07cd3c3924f94a79539a8212aa5ae/appointmentData", obj)
+        .then((response) => {
+            showUsers(response.data);
+            //console.log(response);
+        })
+        .catch((err) => {
+            document.body.innerHTML = document.body.innerHTML + "<h4>Something went wrong</h4>"
+            console.log(err)
+        })
+        //localStorage.setItem(obj.email,JSON.stringify(obj));
     
-        showUsers(obj);
+        //showUsers(obj);
     }
     
     
