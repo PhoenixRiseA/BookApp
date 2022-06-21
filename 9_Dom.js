@@ -27,15 +27,27 @@
     
     
     window.addEventListener("DOMContentLoaded", ()=>{
-        var localStorageObj = localStorage;
-        var localStorageKeys = Object.keys(localStorageObj)
+        axios.get("https://crudcrud.com/api/c0a07cd3c3924f94a79539a8212aa5ae/appointmentData")
+        .then((response) => {
 
-        for(let i=0; i< localStorageKeys.length; i++){
-            var key = localStorageKeys[i];
-            var userDetailsString = localStorageObj[key];
-            var userDetailsObj = JSON.parse(userDetailsString);
-            showUsers(userDetailsObj)
-        }
+            console.log(response)
+
+            for(var i=0; i<response.data.length; i++){
+                showUsers(response.data[i]);
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+        // var localStorageObj = localStorage;
+        // var localStorageKeys = Object.keys(localStorageObj)
+
+        // for(let i=0; i< localStorageKeys.length; i++){
+        //     var key = localStorageKeys[i];
+        //     var userDetailsString = localStorageObj[key];
+        //     var userDetailsObj = JSON.parse(userDetailsString);
+        //     showUsers(userDetailsObj)
+        // }
     })
 
     function showUsers(user){
